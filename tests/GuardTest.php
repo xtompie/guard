@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use Xtompie\Guard\Guard;
+use Xtompie\Guard\Let;
 use Xtompie\Guard\NoValueException;
 
 class GuardTest extends TestCase
@@ -491,5 +492,42 @@ class GuardTest extends TestCase
         
         // than
         $this->assertTrue($value->get());
-    }     
+    } 
+    
+    public function test_let_returnLetInstance()
+    {
+        // given
+        $guard = Guard::of(null);
+
+        // when
+        $let = $guard->let();
+
+        // than
+        $this->assertInstanceOf(Let::class, $let);
+    }
+
+    public function test_let_returnValueFromLetInstance()
+    {
+        // given
+        $guard = Guard::of(['foobar' => 42]);
+        $let = $guard->let();
+
+        // when
+        $value = $let['foobar'];
+
+        // than
+        $this->assertEquals(42, $value->get());
+    }
+
+    public function test_let_deepWalk()
+    {
+        // given
+        $guard = Guard::of(['a' => ['b' => ['c' => ['d' => ['e' => ['f' => 42]]]]]]);
+
+        // when
+        $value = $guard->let()['a']->let()['b']->let()['c']->let()['d']->let()['e']->let()['f'];
+
+        // than
+        $this->assertEquals(42, $value->get());
+    }
 }

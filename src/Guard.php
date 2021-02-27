@@ -185,4 +185,14 @@ class Guard
         }
         return static::of($valueProvider());
     }
+
+    /**
+     * Returns the Let capture mechanism for value 
+     *
+     * @return Let
+     */
+    public function let()
+    {
+        return new Let($this->get());
+    }
 }
