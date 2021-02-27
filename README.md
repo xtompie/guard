@@ -1,13 +1,12 @@
-# Guard
+# Guard - PHP Library
 
-Guard container object for dealing with optional values or null values.
-PHP Library. 
+Guard container object for dealing with optional values or null values
 
 ```php
 $user = Guard::of(request()->input('id'))
     ->map(fn($id) => User::find($id))
     ->not(fn() => abort(404))
-    ->get()
+    ->get();
 ```
 
 **Draft**
