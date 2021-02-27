@@ -38,17 +38,18 @@ More info in source [Guard.php](https://github.com/xtompie/guard/blob/master/src
 
 ## Usage
 
-1. NoValueException
+### NoValueException
+
 ```php
-Guard::of(null)->throw()->get(); // NoValueException will be thrown
+Guard::of(null)->except()->get(); // NoValueException will be thrown
 ```
 
-2. Default value 
+### Default value 
 ```php
 echo Guard::of(null)->get('default'); // -> default
 ```
 
-3. Complex type and value guarding
+### Complex type and value guarding
 ```php
 function divide($a, $b) {
     $b = Guard::of($b)
@@ -60,7 +61,7 @@ function divide($a, $b) {
 }
 ```
 
-4. Let
+### Let
 
 `let()` Returns Let object. Offset get, property get, method call can be called on Let. 
 After that operation new Guard with operation result will be returned.
@@ -84,7 +85,7 @@ echo Guard::of(new \stdClass())
 ;
 ```
 
-5. Extending
+### Extending
 
 ```php
 namespace MyApp\Util;
