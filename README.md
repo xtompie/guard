@@ -1,4 +1,4 @@
-# Guard - PHP Library
+# Guard
 
 Guard container object for dealing with optional values or null values
 
