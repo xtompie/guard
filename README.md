@@ -1,8 +1,18 @@
+# Guard
+
+Guard container object for dealing with optional values or null values.
+PHP Library. 
+
+```php
+$user = Guard::of(request()->input('id'))
+    ->map(fn($id) => User::find($id))
+    ->not(fn() => abort(404))
+    ->get()
+```
 
 **Draft**
 
-A container object for guarding null values.
-
+## Usage
 
 ```php
 
@@ -73,7 +83,6 @@ $label = Guard::of($option)
     ->let()[$key]
     ->get('Undefined')
 
-$lable = optchain($option)[$key]->_;
 
 
 
