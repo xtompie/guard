@@ -4,10 +4,10 @@ Guard container object for dealing with optional/null values.
 
 ```php
 $user = Guard::of(request()->input('id')) // wrap value
-    ->filter(fn($id) => ctype_digit($id)) // filter arg called when value is not null
-    ->map(fn($id) => User::find($id)) // map arg called when value is not null
-    ->not(fn() => abort(404)) // not arg called when value is null
-    ->is(fn($user) => info("User found {$user->id}"))  // is arg called when value is not null
+    ->filter(fn($id) => ctype_digit($id)) // fn called when value is not null
+    ->map(fn($id) => User::find($id)) // fn called when value is not null
+    ->not(fn() => abort(404)) // fn called when value is null
+    ->is(fn($user) => info("User found {$user->id}")) // fn called when value is not null
     ->get(); // get raw value - instace of User::class
 ```
 
