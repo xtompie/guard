@@ -59,7 +59,7 @@ Guard::of(null)->except()->get(); // NoValueException will be thrown
 echo Guard::of(null)->get('default'); // -> default
 ```
 
-#### Complex type and value guarding
+#### Complex type and value
 ```php
 function divide($a, $b) {
     $b = Guard::of($b)
