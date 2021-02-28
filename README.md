@@ -51,16 +51,22 @@ More info in source [Guard.php](blob/master/src/Guard.php)
 #### NoValueException
 
 ```php
+use Xtompie\Guard\Guard;
+
 Guard::of(null)->except()->get(); // NoValueException will be thrown
 ```
 
 #### Default value 
 ```php
+use Xtompie\Guard\Guard;
+
 echo Guard::of(null)->get('default'); // -> default
 ```
 
 #### Complex type and value
 ```php
+use Xtompie\Guard\Guard;
+
 function divide($a, $b) {
     $b = Guard::of($b)
         ->map(fn($i) => (int)$i)
@@ -78,6 +84,8 @@ After that operation new Guard with operation result will be returned.
 When offset, property, method not exist, empty Guard will be returned.
 
 ```php
+use Xtompie\Guard\Guard;
+
 $options = [
     'a' => 'A',
     'b' => 'B',
@@ -87,6 +95,8 @@ echo Guard::of($options)->let()[$key]->get();
 ```
 
 ```php
+use Xtompie\Guard\Guard;
+
 echo Guard::of(new \stdClass())
     ->let()->nonExistingMethod()
     ->let()->nonExistingProperty
