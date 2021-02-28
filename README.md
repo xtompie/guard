@@ -3,6 +3,8 @@
 Guard container object for dealing with optional/null values.
 
 ```php
+use Xtompie\Guard\Guard;
+
 $user = Guard::of(request()->input('id')) // wrap value
     ->filter(fn($id) => ctype_digit($id)) // fn called when value is not null
     ->map(fn($id) => User::find($id)) // fn called when value is not null
