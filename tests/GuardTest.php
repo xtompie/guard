@@ -7,6 +7,17 @@ use Xtompie\Guard\NoValueException;
 
 class GuardTest extends TestCase
 {
+    public function test_ofEmpty()
+    {
+        // given
+
+        // when
+        $value = Guard::ofEmpty(null);
+
+        // then
+        $this->assertFalse($value->is());
+    }
+
     public function test_is_returnsTrueForTrueValue()
     {
         // given
@@ -530,4 +541,29 @@ class GuardTest extends TestCase
         // than
         $this->assertEquals(42, $value->get());
     }
+
+    public function test_toString_empty()
+    {
+        // given
+        $guard = Guard::of(null);
+
+        // when
+        $description = (string)$guard;
+
+        // than
+        $this->assertEquals("Guard.empty", $description);
+    }
+
+    public function test_toString_withFoobarString()
+    {
+        // given
+        $guard = Guard::of("foobar");
+
+        // when
+        $description = (string)$guard;
+
+        // than
+        $this->assertEquals("Guard(foobar)", $description);
+    }
+
 }

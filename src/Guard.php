@@ -17,6 +17,17 @@ class Guard
         return new static($value);
     }
 
+    /**
+     * Returns a Guard with the specified value
+     *
+     * @param mixed $value
+     * @return self
+     */
+    public static function ofEmpty()
+    {
+        return new static(null);
+    }
+
     protected function __construct($value)
     {
         $this->value = $value;
@@ -98,7 +109,7 @@ class Guard
         if ($predicate($this->get())) {
             return $this;
         }
-        return static::of(null);
+        return static::ofEmpty();
     }
 
     /**
@@ -116,7 +127,7 @@ class Guard
         if (!$predicate($this->get())) {
             return $this;
         }
-        return static::of(null);
+        return static::ofEmpty();
     }
 
     /**
@@ -194,5 +205,17 @@ class Guard
     public function let()
     {
         return new Let($this->get());
+    }
+
+    /**
+     * Returnsstring representation for debugging. 
+     *
+     * @return string the string representation of this instance
+     */
+    public function __toString()
+    {
+        return $this->value === null 
+            ? 'Guard.empty' 
+            : sprintf('Guard(%s)', strval($this->value));
     }
 }
