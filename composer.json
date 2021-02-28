@@ -2,7 +2,7 @@
     "name": "xtompie/guard",
     "type": "library",
     "description": "Guard container object for dealing with optional values or null values",
-    "keywords": ["guard", "optional", "option", "null"],
+    "keywords": ["guard", "optional", "null", "nullable", "nullpointerexception"],
     "license": "MIT",
     "authors": [
         {
