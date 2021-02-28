@@ -5,12 +5,12 @@ Guard container object for dealing with optional/null values.
 ```php
 use Xtompie\Guard\Guard;
 
-$user = Guard::of(request()->input('id')) // wrap value
-    ->filter(fn($id) => ctype_digit($id)) // fn called when value is not null
-    ->map(fn($id) => User::find($id)) // fn called when value is not null
-    ->not(fn() => abort(404)) // fn called when value is null
-    ->is(fn($user) => info("User found {$user->id}")) // fn called when value is not null
-    ->get(); // get raw value - instace of User::class
+$user = Guard::of(request()->input('id'))
+    ->filter(fn($id) => ctype_digit($id))
+    ->map(fn($id) => User::find($id))
+    ->not(fn() => abort(404))
+    ->is(fn($user) => info("User found {$user->id}"))
+    ->get();
 ```
 
 ## Installation
