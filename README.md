@@ -45,8 +45,7 @@ Methods:
 - `blankFn` - Same as `blank` but with callback
 - `let` - Returns guard capture mechanism for nested properties, calls, array offsets
 
-More info in source [Guard.php](blob/master/src/Guard.php)
-
+More info in source [Guard.php](src/Guard.php)
 
 ### Usage
 
