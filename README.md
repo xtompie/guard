@@ -40,7 +40,7 @@ Methods:
 - `filter` - Filter the value if present
 - `reject` - Same as `filter` but negation
 - `map` - Maps value if present 
-- `except` - Throw exception if value is not present
+- `assert` - Throw exception if value is not present
 - `blank` - Gets guard with provided value if current is not present
 - `blankFn` - Same as `blank` but with callback
 - `let` - Returns guard capture mechanism for nested properties, calls, array offsets
@@ -54,7 +54,7 @@ More info in source [Guard.php](src/Guard.php)
 ```php
 use Xtompie\Guard\Guard;
 
-Guard::of(null)->except()->get(); // NoValueException will be thrown
+Guard::of(null)->assert()->get(); // NoValueException will be thrown
 ```
 
 #### Default value 
@@ -72,7 +72,7 @@ function divide($a, $b) {
     $b = Guard::of($b)
         ->map(fn($i) => (int)$i)
         ->reject(fn($i) => $i === 0)
-        ->except(\UnexpectedValueException::class)
+        ->assert(\UnexpectedValueException::class)
         ->get();
     return $a / $b;
 }
