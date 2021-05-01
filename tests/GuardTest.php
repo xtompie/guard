@@ -405,49 +405,49 @@ class GuardTest extends TestCase
         $this->assertFalse($called);
     }    
     
-    public function test_except_defaultExceptionIsThrownForNullValue()
+    public function test_assert_defaultExceptionIsThrownForNullValue()
     {
         // given
-        $this->expectException(NoValueException::class);
         $value = Guard::of(null);
 
-        // when
-        $value->except();
-        
         // than
+        $this->expectException(NoValueException::class);
+
+        // when
+        $value->assert();
     }
 
-    public function test_except_customExceptionIsThrownForNullValue()
+    public function test_assert_customExceptionIsThrownForNullValue()
     {
         // given
-        $this->expectException(\LogicException::class);
         $value = Guard::of(null);
 
-        // when
-        $value->except(\LogicException::class);
-        
         // than
+        $this->expectException(\LogicException::class);
+
+        // when
+        $value->assert(\LogicException::class);        
     }    
 
-    public function test_except_customExceptionWitMsgIsThrownForNullValue()
+    public function test_assert_customExceptionWitMsgIsThrownForNullValue()
     {
         // given
-        $this->expectExceptionMessage('Foobar');
         $value = Guard::of(null);
 
-        // when
-        $value->except(\LogicException::class, 'Foobar');
-        
         // than
+        $this->expectExceptionMessage('Foobar');
+
+        // when
+        $value->assert(\LogicException::class, 'Foobar');
     }    
     
-    public function test_except_exceptionIsNotThrownForTrueValue()
+    public function test_assert_exceptionIsNotThrownForTrueValue()
     {
         // given
         $value = Guard::of(true);
 
         // when
-        $value->except();
+        $value->assert();
         
         // than
         $this->assertTrue(true);

@@ -156,7 +156,7 @@ class Guard
      * @throws NoValueException
      * @throws $exception
      */
-    public function except($exception = null, $msg = null)
+    public function assert($exception = null, $msg = null)
     {
         if ($this->is()) {
             return $this;
