@@ -131,9 +131,9 @@ class Guard
     }
 
     /**
-     * If a value is present, apply the provided mapping function to it,
-     * and if the result is non-null, return a Guard describing the result.
-     * Otherwise return an empty Guard.
+     * If value is present, map it to an object of the class. 
+     * The mapping occurs by passing value as the first argument to the class constructor. 
+     * If value is not present return empty guard. 
      *
      * @param \Clouser $mapper
      * @return self
@@ -153,6 +153,8 @@ class Guard
      *
      * @param string|object $exception Exception object or class name, default NoValueException
      * @return self
+     * @throws NoValueException
+     * @throws $exception
      */
     public function except($exception = null, $msg = null)
     {
@@ -205,6 +207,24 @@ class Guard
     public function let()
     {
         return new Let($this->get());
+    }
+
+    /**
+     * If a value is present, it maps it to an object of that class.
+     * The value is passed as the first argument to the constructor.
+     * and if the result is non-null, return a Guard describing the result.
+     * Otherwise return an empty Guard.
+     *
+     * @param string $class
+     * @return self
+     */
+    public function to($class)
+    {
+        if (!$this->is()) {
+            return $this;
+        }
+
+        return static::of(new $class($this->get()));
     }
 
     /**

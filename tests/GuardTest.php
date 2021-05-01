@@ -566,4 +566,28 @@ class GuardTest extends TestCase
         $this->assertEquals("Guard(foobar)", $description);
     }
 
+    public function test_to_empty()
+    {
+        // given
+        $guard = Guard::ofEmpty();
+
+        // when
+        $mapped = $guard->to(DateTime::class);
+
+        // than
+        $this->assertNull($mapped->get());
+    }    
+
+    public function test_to_withValue()
+    {
+        // given
+        $guard = Guard::of('NOW');
+
+        // when
+        $mapped = $guard->to(DateTime::class);
+
+        // than
+        $this->assertInstanceOf(DateTime::class, $mapped->get());
+    }    
+
 }
